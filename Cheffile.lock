@@ -1,0 +1,12 @@
+SITE
+  remote: https://supermarket.getchef.com/api/v1
+  specs:
+    apt (2.6.0)
+    curl (2.0.0)
+    squid (0.5.2)
+
+DEPENDENCIES
+  apt (>= 0)
+  curl (~> 2.0.0)
+  squid (~> 0.5.2)
+
