@@ -19,6 +19,7 @@ if hierarchy.has_key?(node_name)
 		proxy_path = [proxy_path]
 	end
 end
+log_dir = "/vagrant/logs/hierarchy#{hierarchyId}/#{node_name.to_s}"
 
 
 
@@ -51,7 +52,19 @@ end
 
 # copy squid conf
 template "/etc/squid3/squid.conf" do
-#template "/vagrant/a.txt" do
+  source "squid.conf"
+  mode '0775'
+  owner 'vagrant'
+  variables({
+	 :proxy_path => proxy_path,
+	 :hierarchyId => hierarchyId,
+	 :node_name => node_name,
+	 :log_dir => log_dir
+  })
+end
+
+# copy squid conf to log dir
+template log_dir+"/squid.conf" do
   source "squid.conf"
   mode '0775'
   owner 'vagrant'
@@ -73,7 +86,20 @@ ruby_block "insert_line" do
   end
 end
 
-# start squid
+
+execute "kill squid3" do
+    #command "sudo squid -k shutdown"
+	command "sudo service squid3 stop"
+end
+
+execute "clear cache" do
+    command "sudo rm -rf /var/spool/squid3/*"
+end
+
+execute "clear logs" do
+    command "sudo rm -f #{log_dir}/*.log"
+end
+
 execute "start squid3" do
-    command "sudo service squid3 restart"
+    command "sudo service squid3 start"
 end
