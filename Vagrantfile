@@ -26,7 +26,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # install new chef version
   config.omnibus.chef_version = "11.4.0" # :latest
 
-
   # (0..2).each do |i|
     i=0
     config.vm.define "squid#{i}".to_sym do |cfg|
@@ -40,7 +39,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # communication between VMs
       # f.e. 192.168.1.10, 192.168.1.11, 192.168.1.13
       # cfg.vm.network :hostonly, ip: "192.168.1.1#{i}", mac: "0800000021#{i}2"
-      cfg.vm.network :private_network, ip: "192.168.56.1#{i}", mac: "0800000021#{i}2"
+      cfg.vm.network :private_network, ip: "192.168.56.10#{i+1}", mac: "0800000021#{i}2"
 
       # cfg.vm.provision :shell, :inline => "apt-get install curl -y"
 
@@ -52,6 +51,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         chef.add_recipe "squid"
 
         chef.add_recipe "mInit"
+		
       end
 
       # service squid3 start OR start squid3
