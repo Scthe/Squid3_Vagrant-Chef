@@ -1,0 +1,1 @@
+curl -x 192.168.56.101:3128 --connect-timeout 30 http://www.deepsloweasy.com/      

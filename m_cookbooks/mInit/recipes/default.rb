@@ -5,6 +5,8 @@
 #    creates "/home/hello/sample.txt"
 #end
 
+# if some cmd does not work use sudo..
+
 hierarchyId = 4 # [1,2,3,4]
 node_name = node[:hostname].to_sym
 
@@ -47,8 +49,8 @@ end
 
 
 # copy squid conf
-#template "/etc/squid3/squid.conf" do
-template "/vagrant/a.txt" do
+template "/etc/squid3/squid.conf" do
+#template "/vagrant/a.txt" do
   source "squid.conf"
   mode '0775'
   owner 'vagrant'
