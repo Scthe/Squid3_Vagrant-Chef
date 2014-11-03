@@ -32,7 +32,7 @@ default['hierarchy_def'][2] = {
 			:icp_port => 3130
 		},
 		{
-			:type => :parent,
+			:type => :sibling,
 			:hostname => '192.168.56.103',
 			:proxy_port => 3128,
 			:icp_port => 3130
@@ -47,7 +47,7 @@ default['hierarchy_def'][2] = {
 			:icp_port => 3130
 		},
 		{
-			:type => :parent,
+			:type => :sibling,
 			:hostname => '192.168.56.103',
 			:proxy_port => 3128,
 			:icp_port => 3130
@@ -62,7 +62,7 @@ default['hierarchy_def'][2] = {
 			:icp_port => 3130
 		},
 		{
-			:type => :parent,
+			:type => :sibling,
 			:hostname => '192.168.56.102',
 			:proxy_port => 3128,
 			:icp_port => 3130

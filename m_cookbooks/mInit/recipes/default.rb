@@ -7,7 +7,7 @@
 
 # if some cmd does not work use sudo..
 
-hierarchyId = 1 # [1,2,3,4]
+hierarchyId = 4 # [1,2,3,4]
 node_name = node[:hostname].to_sym
 
 hierarchy = node['hierarchy_def'][hierarchyId]
