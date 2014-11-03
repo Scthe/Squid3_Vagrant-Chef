@@ -7,7 +7,7 @@
 
 # if some cmd does not work use sudo..
 
-hierarchyId = 4 # [1,2,3,4]
+hierarchyId = 1 # [1,2,3,4]
 node_name = node[:hostname].to_sym
 
 hierarchy = node['hierarchy_def'][hierarchyId]
@@ -28,14 +28,15 @@ end
 #  mode    "0755"
 #end
 
-#p '###################################'
-#p node # node[squid0]
+p '###################################'
+p node # node[squid0]
+p node_name
 #p proxy_path.inspect
 #p node.inspect
 #p node['_hierarchy']
 #p node['__hierarchy']
 #p node['___hierarchy']
-#p '###################################'
+p '###################################'
 
 
 
@@ -70,4 +71,9 @@ ruby_block "insert_line" do
     file.write_file
     #not_if “grep -q http://www.example.com /etc/hosts”
   end
+end
+
+# start squid
+execute "start squid3" do
+    command "sudo service squid3 restart"
 end

@@ -5,31 +5,24 @@
 # librarian-chef install # to download all cookbooks
 # vagrant plugin install vagrant-omnibus # to force chef version
 
-#vagrant ssh squid0
+# vagrant provision
+# vagrant ssh squid0
 #
-#http://156.17.130.10/sw/
+# http://156.17.130.10/sw/
 #
-#TODO write bash scripts that would output to /vagrant/res
-#TODO fire page in windows browser ( which proxy set to vm)
-#
-#TODO move templates to files
-#
-#ssh root@my_server "chef-solo -c /var/chef/solo.rb"
+# ssh root@my_server "chef-solo -c /var/chef/solo.rb"
 
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
-  config.vm.box = "hashicorp/precise64"
-  config.vm.box_check_update = false
-
-  # install new chef version
-  config.omnibus.chef_version = "11.4.0" # :latest
-
-  # (0..2).each do |i|
-    i=0
+  (0..2).each do |i|
+    #i=0
     config.vm.define "squid#{i}".to_sym do |cfg|
       cfg.vm.hostname = "squid#{i}"
+	  cfg.vm.box = "hashicorp/precise64"
+      cfg.vm.box_check_update = false
+      cfg.omnibus.chef_version = "11.4.0" # :latest
 
       # config.vm.network :forwarded_port, guest: 3000, host: 3001
       # cfg.vm.network :forwarded_port, guest: 80, host: (3000+i)
@@ -62,6 +55,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #(use rm -f to clean log)
 
     end
-  # end
+  end
 
 end
