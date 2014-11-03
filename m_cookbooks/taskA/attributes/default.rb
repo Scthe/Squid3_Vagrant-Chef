@@ -18,7 +18,6 @@ default['hierarchy_def'][1] = {
 			:proxy_port => 3128,
 			:icp_port => 3130
 		}
-		# TODO cmd => [ 'http://www.androidcentral.com/']
 	}
 }
 

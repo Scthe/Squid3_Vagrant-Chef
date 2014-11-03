@@ -1,10 +1,3 @@
-# TODO clear logs here - just in case
-# TODO wrtite wget here !
-#execute "a sample command" do
-#    command "touch /home/hello/sample.txt"
-#    creates "/home/hello/sample.txt"
-#end
-
 # if some cmd does not work use sudo..
 
 hierarchyId = 4 # [1,2,3,4]
@@ -22,32 +15,10 @@ end
 log_dir = "/vagrant/logs/hierarchy#{hierarchyId}/#{node_name.to_s}"
 
 
-
-# TODO write access logs to /vagrant/logs
-#directory "/etc/profile.d" do
-#  owner   "root"
-#  mode    "0755"
-#end
-
 p '###################################'
-p node # node[squid0]
 p node_name
-#p proxy_path.inspect
-#p node.inspect
-#p node['_hierarchy']
-#p node['__hierarchy']
-#p node['___hierarchy']
 p '###################################'
 
-
-
-# copy aliases
-template "/home/vagrant/.bash_aliases" do
-  source ".bash_aliases"
-  mode '0775'
-  owner 'vagrant'
-  action  :create
-end
 
 
 # copy squid conf
@@ -88,7 +59,6 @@ end
 
 
 execute "kill squid3" do
-    #command "sudo squid -k shutdown"
 	command "sudo service squid3 stop"
 end
 
